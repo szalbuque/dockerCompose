@@ -1,8 +1,8 @@
 ## Passos para criação <br>
 Usei este artigo como guia:<br>
 https://herewecode.io/blog/a-beginners-guide-to-docker-how-to-create-a-client-server-side-with-docker-compose/
-
-**Criei o ambiente de teste numa vm do Azure:**
+<br>
+**Criei o ambiente de teste numa vm do Azure:**<br>
 *azureuser@docker1:~/testedockercompose$ ls -la<br>
 drwxrwxr-x 4 azureuser azureuser 4096 Jul 24 14:13 .<br>
 drwxr-xr-x 6 azureuser azureuser 4096 Jul 24 14:12 ..<br>
@@ -10,7 +10,7 @@ drwxrwxr-x 2 azureuser azureuser 4096 Jul 24 14:12 client<br>
 -rw-rw-r-- 1 azureuser azureuser    1 Jul 24 14:13 docker-compose.yml<br>
 drwxrwxr-x 2 azureuser azureuser 4096 Jul 24 14:12 server*<br>
 <br>
-**Dentro da pasta server:**
+**Dentro da pasta server:**<br>
 *azureuser@docker1:~/testedockercompose/server$ ls -la<br>
 drwxrwxr-x 2 azureuser azureuser 4096 Jul 24 14:15 .<br>
 drwxrwxr-x 4 azureuser azureuser 4096 Jul 24 14:13 ..<br>
@@ -18,44 +18,44 @@ drwxrwxr-x 4 azureuser azureuser 4096 Jul 24 14:13 ..<br>
 -rw-rw-r-- 1 azureuser azureuser    1 Jul 24 14:15 index.html<br>
 -rw-rw-r-- 1 azureuser azureuser    1 Jul 24 14:15 server.py*<br>
 <br>
-**Arquivo server.py:**
+**Arquivo server.py:**<br>
 (este código vai levantar um servidor web simples nesta pasta)<br>
 https://github.com/szalbuque/dockerCompose/blob/main/server/server.py<br>
 <br>
-**Arquivo index.html:**
-(este arquivo será compartilhado pelo servidor quando ele for iniciado e esta frase será exibida)<br><br>
+**Arquivo index.html:**<br>
+(este arquivo será compartilhado pelo servidor quando ele for iniciado e esta frase será exibida)<br>
 https://github.com/szalbuque/dockerCompose/blob/main/server/index.html<br>
 <br>
-**Arquivo Dockerfile:**
+**Arquivo Dockerfile:**<br>
 (utiliza a imagem oficial do Python, que está no Docker Hub)<br>
 https://github.com/szalbuque/dockerCompose/blob/main/server/Dockerfile<br>
 <br>
-**Criando o CLIENTE:**
-**Na pasta client, criar os arquivos: client.py e Dockerfile.**
+**Criando o CLIENTE:**<br>
+**Na pasta client, criar os arquivos: client.py e Dockerfile.**<br>
 *azureuser@docker1:~/testedockercompose/client$ ls -la<br>
 drwxrwxr-x 2 azureuser azureuser 4096 Jul 24 14:25 .<br>
 drwxrwxr-x 4 azureuser azureuser 4096 Jul 24 14:13 ..<br>
 -rw-rw-r-- 1 azureuser azureuser    1 Jul 24 14:25 Dockerfile<br>
 -rw-rw-r-- 1 azureuser azureuser    1 Jul 24 14:25 client.py*<br>
 <br>
-**Arquivo client.py:**
+**Arquivo client.py:**<br>
 (este código vai pegar o conteúdo da página do servidor web e exibir)<br>
 https://github.com/szalbuque/dockerCompose/blob/main/client/client.py<br>
 <br>
-**Arquivo Dockerfile (na pasta cliente):**
+**Arquivo Dockerfile (na pasta cliente):**<br>
 https://github.com/szalbuque/dockerCompose/blob/main/client/Dockerfile<br>
 <br>
-**Na pasta raiz do projeto, editar o arquivo docker-compose.yml:**
+**Na pasta raiz do projeto, editar o arquivo docker-compose.yml:**<br>
 https://github.com/szalbuque/dockerCompose/blob/main/docker-compose.yml<br>
 <br>
 
-**Instalar o docker-compose:**
-*sudo apt install docker-compose*
-
-**Usar o comando Docker-Compose para criar a imagem, desta vez com dois containers:**
-*docker-compose build*
-
-*azureuser@docker1:~/testedockercompose$ sudo docker-compose build*
+**Instalar o docker-compose:**<br>
+*sudo apt install docker-compose*<br>
+<br>
+**Usar o comando Docker-Compose para criar a imagem, desta vez com dois containers:**<br>
+*docker-compose build*<br>
+<br>
+*azureuser@docker1:~/testedockercompose$ sudo docker-compose build*<br>
 Building server<br>
 Step 1/4 : FROM python:latest<br>
 latest: Pulling from library/python<br>
@@ -84,8 +84,8 @@ Removing intermediate container 8cc3bbc53176<br>
 Successfully built f51ca862dad9<br>
 Successfully tagged testedockercompose_client:latest<br>
 <br>
-**Usar o comando docker-compose up para iniciar os serviços (containers):**
-*azureuser@docker1:~/testedockercompose$ sudo docker-compose up*
+**Usar o comando docker-compose up para iniciar os serviços (containers):**<br>
+*azureuser@docker1:~/testedockercompose$ sudo docker-compose up*<br>
 Creating network "testedockercompose_default" with the default driver<br>
 Creating testedockercompose_server_1 ... done<br>
 Creating testedockercompose_client_1 ... done<br>
@@ -95,7 +95,7 @@ client_1  | $ Docker-Compose is magic!<br>
 client_1  |<br>
 testedockercompose_client_1 exited with code 0<br>
 <br>
-**Para testar, abri outro terminal no mesmo servidor e digitei: curl http://localhost**
-*azureuser@docker1:~$ sudo curl http://localhost*
+**Para testar, abri outro terminal no mesmo servidor e digitei: curl http://localhost**<br>
+*azureuser@docker1:~$ sudo curl http://localhost*<br>
 $ Docker-Compose is magic!<br>
 
